@@ -1,8 +1,9 @@
 import { MediaService } from './../services/media.service';
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, ViewChild } from '@angular/core';
 import { Response } from '_debugger';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-upload',
@@ -13,8 +14,8 @@ import { Router } from '@angular/router';
 
 export class UploadComponent implements OnInit {
   file: File;
-  title = '';
-  description = '';
+  @ViewChild('title') title: ElementRef;
+  @ViewChild('description') description: ElementRef;
   constructor(private mediaService: MediaService,
               private router: Router) { }
 
@@ -35,10 +36,12 @@ export class UploadComponent implements OnInit {
           this.router.navigate(['/front']);
         }, (error: HttpErrorResponse) => {
           console.log(error);
+          alert('Error!');
           this.router.navigate(['/front']);
         }
       );
     } else {
+      alert('Login first');
       this.router.navigate(['login']);
     }
   }

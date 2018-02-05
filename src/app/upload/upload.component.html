@@ -1,9 +1,9 @@
 <form>
   <input type="file" name="file" (change)="setFile($event)">
   <br>
-  <input type="text" name="title" [(ngModel)]="title">
+  <input type="text" name="title" #title>
   <br>
-  <textarea name="description" [(ngModel)]="description"></textarea>
+  <textarea name="description" #description></textarea>
   <br>
   <button type="submit" (click)="startUpload()">Upload</button>
 </form>
